@@ -4,6 +4,10 @@ var windows = [];
 import { WindowListener } from "./js/windowListener.js";
 var windowListener = new WindowListener(windows);
 
+// Start listening for tab events
+import { TabListener } from "./js/tabListener.js";
+var tabListener = new TabListener(windows);
+
 // Function that returns a specific window
 function getWindow(windowId) {
     for (var index in windows) {

@@ -8,6 +8,7 @@ export class WindowListener {
             this.windows.push({
                 id: window.id,
                 tabs: [],
+                activeTab: {},
             });
         });
 
