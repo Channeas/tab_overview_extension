@@ -1,5 +1,9 @@
 var windows = [];
 
+// Start listening for window events
+import { WindowListener } from "./js/windowListener.js";
+var windowListener = new WindowListener(windows);
+
 // Function that returns a specific window
 function getWindow(windowId) {
     for (var index in windows) {
