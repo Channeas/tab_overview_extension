@@ -18,7 +18,8 @@ export class TabListener {
 
             // Add it to the correct window
             var currentWindow = this.getWindow(tab.windowId);
-            currentWindow.tabs.push(newTab);
+            // currentWindow.tabs.push(newTab);
+            currentWindow.tabs.splice(tab.index, 0, newTab);
         });
 
         // Listen for tab removal
