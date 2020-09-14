@@ -13,11 +13,12 @@
 <style scoped>
 #popup {
     width: 350px;
+    border: 1px solid #dadce0;
 }
 
 #header {
     padding: 8px 0px;
-    border: 1px solid #dadce0;
+    border-bottom: 1px solid #dadce0;
 }
 
 #tabHolder {

@@ -11,7 +11,6 @@
 <style>
 .tab {
     padding: 8px 16px;
-    margin-left: 2px;
     display: flex;
     align-items: center;
     cursor: pointer;
