@@ -99,8 +99,8 @@ export default {
             // Sorting functions
             var domainSort = (tab1, tab2) => {
                 // Get the lowercase clean urls (no protocol or subdomains)
-                var url1 = cleanUrl(tab1.url).toLowerCase(),
-                    url2 = cleanUrl(tab2.url).toLowerCase();
+                var url1 = getCleanUrl(tab1.url).toLowerCase(),
+                    url2 = getCleanUrl(tab2.url).toLowerCase();
 
                 // Check if url1 is larger (alphabetically) than url2
                 if (largestString(url1, url2) == url1) {
@@ -174,27 +174,27 @@ export default {
             };
 
             // Subfunction for cleaning urls
-            var cleanUrl = url => {
-                // TODO: REFACTOR!!!
-                var clean = url;
+            var getCleanUrl = url => {
+                var res = url;
 
                 // Remove the protocol
-                if (clean.indexOf("//") > -1) {
-                    clean = clean.substring(clean.indexOf("//") + 2, clean.length);
+                if (res.indexOf("//") > -1) {
+                    res = res.substring(res.indexOf("//") + 2, res.length);
                 }
 
                 // Extract the path
                 var path = "";
-                if (clean.indexOf("/") > 0) {
-                    path = clean.substring(clean.indexOf("/"), clean.length);
-                    clean = clean.substring(0, clean.indexOf("/"));
+                if (res.indexOf("/") > 0) {
+                    path = res.substring(res.indexOf("/"), res.length);
+                    res = res.substring(0, res.indexOf("/"));
                 }
 
-                // Remove subdomains
-                var s = clean.split(".");
+                // Split the different sections of the url
+                var sections = res.split("."),
+                    length = sections.length;
 
-                // Return the domain with the path
-                return `${s[s.length - 2]}.${s[s.length - 1]}${path}`;
+                // Return the last two sections (the domain) with the path
+                return `${sections[length - 2]}.${sections[length - 1]}${path}`;
             };
 
             // Determine which sorting function to use
