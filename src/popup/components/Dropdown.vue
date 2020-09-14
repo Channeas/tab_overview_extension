@@ -107,7 +107,6 @@
     transition: 0.3s ease;
     overflow: hidden;
     border: 1px solid #cccccc;
-    /* border: 1px solid #cccccc; */
     border-radius: 6px;
     margin-top: -30px;
     padding-top: 20px;
@@ -115,7 +114,6 @@
 
 .dropVisible {
     height: 97px;
-    /* border-color: #6469ff; */
     box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.05);
 }
 

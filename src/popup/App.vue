@@ -46,40 +46,14 @@ export default {
     },
     data: () => {
         return {
-            time: Date.now(),
-            currentTime: Date.now(),
             tabs: [],
             filteredTabs: [],
-            sortedTabs: [],
             sortMethods: ["Domain", "Last used", "Position", "Title"],
             selectedSort: "Position",
             query: "",
         };
     },
-    methods: {
-        updateTime() {
-            this.currentTime = Date.now();
-        },
-    },
     computed: {
-        // TODO: Remove this!
-        timeSince: function() {
-            var timeDiff = this.currentTime - this.time;
-            var diffInSeconds = timeDiff / 1000;
-
-            if (diffInSeconds / 60 >= 1) {
-                var diffInMinutes = diffInSeconds / 60;
-
-                if (diffInMinutes / 60 >= 1) {
-                    var diffInHours = diffInMinutes / 60;
-                    return `${Math.floor(diffInHours)} hours ago`;
-                } else {
-                    return `${Math.floor(diffInMinutes)} minutes ago`;
-                }
-            } else {
-                return `${Math.floor(diffInSeconds)} seconds ago`;
-            }
-        },
         // Function that returns the filtered tabs
         filterTabs() {
             // Make sure there are tabs to filter
@@ -242,7 +216,6 @@ export default {
 
             // Loop through all the unsorted tabs
             for (var unsortedIndex = 0; unsortedIndex < unsortedTabs.length; unsortedIndex++) {
-                // console.log(`Unsorted index: ${unsortedIndex}`);
                 var tabPlaced = false;
 
                 // Get the tab to be placed
@@ -250,7 +223,6 @@ export default {
 
                 // Loop through the sorted tabs, looking for the correct placement
                 for (var sortedIndex = 0; sortedIndex < sortedTabs.length; sortedIndex++) {
-                    // console.log(`Sorted index: ${sortedIndex}`);
                     // Get the sorted tab
                     var sortedTab = sortedTabs[sortedIndex];
 
@@ -272,9 +244,6 @@ export default {
         },
     },
     created: function() {
-        // TODO: Remove this!
-        window.setInterval(this.updateTime, 1000);
-
         // Communicate with the background script
         var port = chrome.extension.connect({ name: "Databus" });
         // Get the current window
