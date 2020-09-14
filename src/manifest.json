@@ -4,7 +4,7 @@
     "short_name": "Tab Overview",
     "version": "1.0.0",
     "manifest_version": 2,
-    "permissions": ["activeTab", "background", "tabs", "<all_urls>"],
+    "permissions": ["background", "tabs"],
     "icons": {
         "48": "icons/icon_48.png",
         "128": "icons/icon_128.png"
