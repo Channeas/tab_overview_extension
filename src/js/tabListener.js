@@ -1,25 +1,22 @@
+// Import the Tab class
+import { Tab } from "./classes/tab.js";
+
+/* Class that listens for tab events, and acts upon them */
 export class TabListener {
     constructor(windowList) {
         this.windows = windowList;
         this.detatchedTab = null;
 
         // Listen for new tabs
-        chrome.tabs.onCreated.addListener(tab => {
-            // Create the tab
-            var newTab = {
-                title: tab.title,
-                id: tab.id,
-                windowId: tab.windowId,
-                lastUsed: Date.now(),
-                active: false,
-                favIconUrl: tab.favIconUrl,
-                url: tab.url,
-            };
+        chrome.tabs.onCreated.addListener(tabData => {
+            // Create the new tab
+            var tab = new Tab(tabData);
 
-            // Add it to the correct window
-            var currentWindow = this.getWindow(tab.windowId);
-            // currentWindow.tabs.push(newTab);
-            currentWindow.tabs.splice(tab.index, 0, newTab);
+            // Get the current window
+            var currentWindow = this.getWindow(tabData.windowId);
+
+            // Add the new tab to it
+            currentWindow.tabs.splice(tabData.index, 0, tab);
         });
 
         // Listen for tab removal
@@ -62,23 +59,23 @@ export class TabListener {
         });
 
         // Listen to tab updates
-        chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+        chrome.tabs.onUpdated.addListener((tabId, changeInfo, tabData) => {
             // Find the updated tab
-            var updatedTab = this.findTab(tab.windowId, tabId);
+            var tab = this.findTab(tabData.windowId, tabId);
 
             // Update the tab title
-            if (tab.title) {
-                updatedTab.title = tab.title;
+            if (tabData.title) {
+                tab.title = tabData.title;
             }
 
             // Update the favicon url
-            if (tab.favIconUrl) {
-                updatedTab.favIconUrl = tab.favIconUrl;
+            if (tabData.favIconUrl) {
+                tab.favIconUrl = tabData.favIconUrl;
             }
 
             // Update the url
-            if (tab.url) {
-                updatedTab.url = tab.url;
+            if (tabData.url) {
+                tab.url = tabData.url;
             }
         });
 
