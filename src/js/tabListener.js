@@ -13,6 +13,7 @@ export class TabListener {
                 lastUsed: Date.now(),
                 active: false,
                 favIconUrl: tab.favIconUrl,
+                url: tab.url,
             };
 
             // Add it to the correct window
@@ -72,6 +73,11 @@ export class TabListener {
             // Update the favicon url
             if (tab.favIconUrl) {
                 updatedTab.favIconUrl = tab.favIconUrl;
+            }
+
+            // Update the url
+            if (tab.url) {
+                updatedTab.url = tab.url;
             }
         });
 
