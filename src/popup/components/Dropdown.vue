@@ -46,10 +46,11 @@
     cursor: pointer;
     user-select: none;
     position: relative;
+    vertical-align: top;
 }
 
 .dropHead {
-    padding: 6px;
+    padding: 7px;
     background-color: #fff;
     border-radius: 6px;
     border: 1px solid #cccccc;
@@ -101,7 +102,7 @@
 .dropBody {
     position: absolute;
     background-color: #fff;
-    width: 125.3px;
+    width: calc(100% - 2px);
     z-index: 99;
     height: 0;
     transition: 0.3s ease;
