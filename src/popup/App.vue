@@ -244,6 +244,12 @@ export default {
         },
     },
     created: function() {
+        // Load the user's preferred sorting method
+        var sortMethod = localStorage.getItem("preferredSortMethod");
+        if (sortMethod && this.sortMethods.includes(sortMethod)) {
+            this.selectedSort = sortMethod;
+        }
+
         // Communicate with the background script
         var port = chrome.extension.connect({ name: "Databus" });
         // Get the current window
@@ -266,8 +272,11 @@ export default {
 
         // Start listening for updates to the search method
         EventBus.$on("newSortMethod", method => {
-            // Save the query
+            // Save the sort method locally
             this.selectedSort = method;
+
+            // Update the user's preferred sorting method
+            localStorage.setItem("preferredSortMethod", method);
         });
     },
 };
