@@ -2,7 +2,7 @@
     "name": "Simple Tab Overview",
     "description": "Simple Tab Overview",
     "short_name": "Tab Overview",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "manifest_version": 2,
     "permissions": ["background", "tabs"],
     "icons": {
