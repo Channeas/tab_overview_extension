@@ -8,7 +8,7 @@ export class WindowListener {
         // Listen for new windows
         chrome.windows.onCreated.addListener(windowData => {
             // Push the new window to the array of open windows
-            this.windows.push(new Window(windowData));
+            this.windows.push(new Window(windowData, true));
         });
 
         // Listen for window closes
@@ -25,7 +25,7 @@ export class WindowListener {
         // Loop through all the windows, converting them to the custom Window class
         chrome.windows.getAll(windowList => {
             for (var index = 0; index < windowList.length; index++) {
-                this.windows.push(new Window(windowList[index]));
+                this.windows.push(new Window(windowList[index], false));
             }
         });
     }
